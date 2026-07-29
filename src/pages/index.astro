@@ -1,11 +1,436 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+// src/pages/index.astro
+import Layout from "../layouts/Layout.astro";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const services = [
+	{
+		title: "Corporate Events & Conferences",
+		desc: "Large-scale stage production, brand integration, and professional execution[cite: 1].",
+	},
+	{
+		title: "Luxury Weddings",
+		desc: "Stunning custom themes, décor, and unforgettable milestone moments[cite: 1].",
+	},
+	{
+		title: "Product Launches",
+		desc: "High-impact experiential marketing and cinematic reveals[cite: 1].",
+	},
+	{
+		title: "Concerts & Festivals",
+		desc: "High-energy entertainment, massive LED setups, and crowd management[cite: 1].",
+	},
+	{
+		title: "Family Days & Socials",
+		desc: "Engaging corporate and private celebrations designed for fun[cite: 1].",
+	},
+	{
+		title: "Birthday & Private Parties",
+		desc: "Bespoke, trend-setting private functions crafted to perfection[cite: 1].",
+	},
+];
+
+const clients = [
+	"Google",
+	"Wipro",
+	"Porsche",
+	"Škoda",
+	"British Petroleum (bp)",
+	"Amdocs",
+	"Elecon",
+	"SBI Life",
+	"Yono SBI",
+];
+
+const portfolioHighlights = [
+	{
+		title: "Porsche 911 Launch Event",
+		category: "Product Launch",
+		image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=800",
+	},
+	{
+		title: "Elecon Global Meet 2025",
+		category: "Corporate Conference",
+		image: "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&q=80&w=800",
+	},
+	{
+		title: "Manhattan Network Gala",
+		category: "Corporate Event",
+		image: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&q=80&w=800",
+	},
+	{
+		title: "Luxury Destination Wedding",
+		category: "Wedding Production",
+		image: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=800",
+	},
+];
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="Vibe Events | We create - You Celebrate">
+	<!-- Navbar -->
+	<header
+		class="fixed top-0 w-full z-50 glass-card border-b border-slate-800/80"
+	>
+		<div
+			class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between"
+		>
+			<a
+				href="#"
+				class="text-2xl font-black tracking-wider text-white flex items-center gap-2"
+			>
+				<span class="bg-red-600 text-white px-2 py-1 rounded">V</span> VIBE
+				EVENTS
+			</a>
+
+			<div
+				class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-300"
+			>
+				<a href="#work" class="hover:text-red-400 transition-colors"
+					>Our Work</a
+				>
+				<a href="#services" class="hover:text-red-400 transition-colors"
+					>Services</a
+				>
+				<a href="#clients" class="hover:text-red-400 transition-colors"
+					>Clients</a
+				>
+				<a
+					href="https://www.instagram.com/vibe_events__?igsh=OTBoM2hjOHkyOW9p"
+					target="_blank"
+					class="hover:text-red-400 transition-colors">Instagram</a
+				>
+				<a
+					href="https://m.youtube.com/@vibeevents07"
+					target="_blank"
+					class="hover:text-red-400 transition-colors">YouTube</a
+				>
+			</div>
+
+			<div>
+				<a
+					href="#contact"
+					class="px-5 py-2.5 rounded-full bg-gradient-to-r from-red-600 to-amber-500 hover:opacity-90 text-white font-bold text-sm transition-all shadow-lg shadow-red-600/30"
+				>
+					Let's Talk
+				</a>
+			</div>
+		</div>
+	</header>
+
+	<main class="pt-32">
+		<!-- Hero Section -->
+		<section
+			class="py-20 lg:py-32 max-w-7xl mx-auto px-6 text-center relative"
+		>
+			<div
+				class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-card border border-red-500/30 text-red-400 text-sm font-bold mb-8 uppercase tracking-widest"
+				data-aos="fade-down"
+			>
+				<span class="w-2.5 h-2.5 rounded-full bg-red-500 animate-ping"
+				></span>
+				8+ Years of Crafting Magic[cite: 1]
+			</div>
+
+			<h1
+				class="text-6xl md:text-8xl font-black tracking-tight mb-6 max-w-5xl mx-auto leading-none"
+				data-aos="fade-up"
+			>
+				WE CREATE. <br /><span class="text-gradient"
+					>YOU CELEBRATE.</span
+				>
+			</h1>
+
+			<p
+				class="text-lg md:text-2xl text-slate-400 mb-12 max-w-3xl mx-auto font-medium"
+				data-aos="fade-up"
+				data-aos-delay="100"
+			>
+				From inspirational ideas to stunning stage productions, strong
+				themes, and creative programming[cite: 1]. We turn your boldest
+				dreams into reality.
+			</p>
+
+			<div
+				class="flex flex-col sm:flex-row justify-center gap-4"
+				data-aos="fade-up"
+				data-aos-delay="200"
+			>
+				<a
+					href="#work"
+					class="px-8 py-4 rounded-full bg-red-600 hover:bg-red-500 text-white font-black tracking-wider uppercase transition-all shadow-xl shadow-red-600/40 text-center"
+				>
+					View Our Productions
+				</a>
+				<a
+					href="https://www.instagram.com/vibe_events__?igsh=OTBoM2hjOHkyOW9p"
+					target="_blank"
+					class="px-8 py-4 rounded-full glass-card hover:bg-slate-800 text-white font-black tracking-wider uppercase transition-all text-center border border-slate-700 flex items-center justify-center gap-2"
+				>
+					📸 Watch Reels on Instagram
+				</a>
+			</div>
+		</section>
+
+		<!-- Stats Bar -->
+		<section class="py-12 bg-slate-900/60 border-y border-slate-800">
+			<div
+				class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center"
+			>
+				<div data-aos="fade-up">
+					<p class="text-4xl font-black text-red-500 mb-1">
+						8+ Years
+					</p><p
+						class="text-xs font-bold text-slate-400 uppercase tracking-widest"
+					>
+						Industry Experience[cite: 1]
+					</p>
+				</div>
+				<div data-aos="fade-up" data-aos-delay="100">
+					<p class="text-4xl font-black text-amber-500 mb-1">
+						100%
+					</p><p
+						class="text-xs font-bold text-slate-400 uppercase tracking-widest"
+					>
+						In-House Creative[cite: 1]
+					</p>
+				</div>
+				<div data-aos="fade-up" data-aos-delay="200">
+					<p class="text-4xl font-black text-red-500 mb-1">
+						Global
+					</p><p
+						class="text-xs font-bold text-slate-400 uppercase tracking-widest"
+					>
+						Brand Partners[cite: 1]
+					</p>
+				</div>
+				<div data-aos="fade-up" data-aos-delay="300">
+					<p class="text-4xl font-black text-amber-500 mb-1">
+						Custom
+					</p><p
+						class="text-xs font-bold text-slate-400 uppercase tracking-widest"
+					>
+						Tailored Projects[cite: 1]
+					</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- Portfolio Gallery -->
+		<section id="work" class="py-24 max-w-7xl mx-auto px-6">
+			<div
+				class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6"
+			>
+				<div>
+					<h2
+						class="text-red-500 font-bold uppercase tracking-widest text-sm mb-2"
+						data-aos="fade-up"
+					>
+						Portfolio Gallery
+					</h2>
+					<h3
+						class="text-4xl md:text-5xl font-black"
+						data-aos="fade-up"
+						data-aos-delay="100"
+					>
+						STAGED TO <span class="text-gradient">PERFECTION</span>
+					</h3>
+				</div>
+				<p
+					class="text-slate-400 max-w-md text-sm"
+					data-aos="fade-up"
+					data-aos-delay="200"
+				>
+					Explore our high-end corporate reveals, massive LED setups,
+					and breathtaking event productions for industry giants[cite:
+					1].
+				</p>
+			</div>
+
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+				{
+					portfolioHighlights.map((item, index) => (
+						<div
+							data-aos="fade-up"
+							data-aos-delay={index * 100}
+							class="group relative h-96 rounded-3xl overflow-hidden glass-card border border-slate-800"
+						>
+							<img
+								src={item.image}
+								alt={item.title}
+								class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-80"
+							/>
+							<div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
+
+							<div class="absolute bottom-0 left-0 p-8">
+								<span class="text-xs font-black uppercase tracking-widest px-3 py-1 rounded-full bg-red-600 text-white mb-3 inline-block">
+									{item.category}
+								</span>
+								<h4 class="text-2xl md:text-3xl font-black text-white group-hover:text-red-400 transition-colors">
+									{item.title}
+								</h4>
+							</div>
+						</div>
+					))
+				}
+			</div>
+		</section>
+
+		<!-- What We Do -->
+		<section
+			id="services"
+			class="py-24 bg-slate-900/30 border-y border-slate-800"
+		>
+			<div class="max-w-7xl mx-auto px-6">
+				<div class="text-center mb-16">
+					<h2
+						class="text-red-500 font-bold uppercase tracking-widest text-sm mb-2"
+						data-aos="fade-up"
+					>
+						Our Expertise
+					</h2>
+					<h3
+						class="text-4xl md:text-5xl font-black"
+						data-aos="fade-up"
+						data-aos-delay="100"
+					>
+						WHAT <span class="text-gradient">WE DO</span>
+					</h3>
+				</div>
+
+				<div
+					class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+				>
+					{
+						services.map((srv, index) => (
+							<div
+								data-aos="fade-up"
+								data-aos-delay={index * 100}
+								class="glass-card p-8 rounded-3xl border border-slate-800 hover:border-red-500/50 transition-all duration-300 group"
+							>
+								<div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-red-600 to-amber-500 flex items-center justify-center text-white font-black text-xl mb-6 shadow-lg shadow-red-600/20 group-hover:scale-110 transition-transform">
+									0{index + 1}
+								</div>
+								<h4 class="text-2xl font-bold mb-3 text-white">
+									{srv.title}
+								</h4>
+								<p class="text-slate-400 text-sm leading-relaxed">
+									{srv.desc}
+								</p>
+							</div>
+						))
+					}
+				</div>
+			</div>
+		</section>
+
+		<!-- Clients Section -->
+		<section id="clients" class="py-24 max-w-7xl mx-auto px-6 text-center">
+			<h2
+				class="text-red-500 font-bold uppercase tracking-widest text-sm mb-2"
+				data-aos="fade-up"
+			>
+				Trusted Partnerships
+			</h2>
+			<h3
+				class="text-4xl md:text-5xl font-black mb-16"
+				data-aos="fade-up"
+				data-aos-delay="100"
+			>
+				PROUDLY SERVING <span class="text-gradient"
+					>GLOBAL LEADERS</span>
+			</h3>
+
+			<div
+				class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6"
+				data-aos="fade-up"
+				data-aos-delay="200"
+			>
+				{
+					clients.map((client) => (
+						<div class="glass-card py-6 px-4 rounded-2xl border border-slate-800 flex items-center justify-center font-black text-slate-300 tracking-wider text-base hover:text-white hover:border-red-500/50 transition-all">
+							{client}
+						</div>
+					))
+				}
+			</div>
+		</section>
+
+		<!-- Social Media Highlight Banner -->
+		<section
+			class="py-16 bg-gradient-to-r from-red-950/40 via-slate-900 to-amber-950/40 border-y border-slate-800"
+		>
+			<div class="max-w-7xl mx-auto px-6 text-center">
+				<h3 class="text-3xl font-black mb-4">
+					SEE OUR LIVE EVENT VIBES
+				</h3>
+				<p class="text-slate-400 mb-8 max-w-xl mx-auto text-sm">
+					Check out our latest event reels, behind-the-scenes setups,
+					and grand celebrations online.
+				</p>
+
+				<div class="flex flex-wrap justify-center gap-4">
+					<a
+						href="https://www.instagram.com/vibe_events__?igsh=OTBoM2hjOHkyOW9p"
+						target="_blank"
+						class="px-6 py-3 rounded-full bg-slate-800 hover:bg-slate-700 text-white font-bold text-sm border border-slate-700 transition-all"
+					>
+						📸 Instagram: @vibe_events__
+					</a>
+					<a
+						href="https://m.youtube.com/@vibeevents07"
+						target="_blank"
+						class="px-6 py-3 rounded-full bg-slate-800 hover:bg-slate-700 text-white font-bold text-sm border border-slate-700 transition-all"
+					>
+						▶️ YouTube: @vibeevents07
+					</a>
+				</div>
+			</div>
+		</section>
+
+		<!-- Contact / Booking Section -->
+		<section id="contact" class="py-24 max-w-4xl mx-auto px-6">
+			<div
+				class="glass-card p-10 md:p-16 rounded-3xl border border-red-500/40 text-center relative overflow-hidden shadow-2xl"
+			>
+				<div
+					class="absolute inset-0 bg-gradient-to-r from-red-600/10 via-amber-600/10 to-transparent pointer-events-none"
+				>
+				</div>
+
+				<h2 class="text-4xl md:text-5xl font-black mb-4">
+					LET'S CREATE SOMETHING <span class="text-gradient"
+						>EXTRAORDINARY</span>
+				</h2>
+				<p class="text-slate-400 max-w-xl mx-auto mb-10 text-base">
+					Ready to elevate your next corporate event or celebration?
+					Get in touch with our team today[cite: 1].
+				</p>
+
+				<div
+					class="flex flex-col sm:flex-row justify-center gap-4 text-slate-300"
+				>
+					<a
+						href="tel:9145713890"
+						class="px-8 py-4 rounded-full bg-gradient-to-r from-red-600 to-amber-500 hover:opacity-90 text-white font-black tracking-wider uppercase transition-all shadow-xl shadow-red-600/30"
+					>
+						📞 Call: 9145713890
+					</a>
+					<a
+						href="mailto:vibeevents07@gmail.com"
+						class="px-8 py-4 rounded-full glass-card hover:bg-slate-800 font-black tracking-wider uppercase transition-all border border-slate-700"
+					>
+						✉️ Email Us
+					</a>
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<footer
+		class="border-t border-slate-800 py-8 text-center text-xs text-slate-500 font-medium"
+	>
+		<p>
+			&copy; {new Date().getFullYear()} Vibe Events. We create — You Celebrate.
+			All rights reserved[cite: 1].
+		</p>
+	</footer>
 </Layout>
