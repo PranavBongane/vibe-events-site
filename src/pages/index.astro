@@ -43,21 +43,25 @@ const clients = [
 
 const portfolioHighlights = [
 	{
+		id: "porsche-launch",
 		title: "Porsche 911 Launch Event",
 		category: "Product Launch",
 		image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=800",
 	},
 	{
+		id: "elecon-meet",
 		title: "Elecon Global Meet 2025",
 		category: "Corporate Conference",
 		image: "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&q=80&w=800",
 	},
 	{
+		id: "manhattan-gala",
 		title: "Manhattan Network Gala",
 		category: "Corporate Event",
 		image: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&q=80&w=800",
 	},
 	{
+		id: "luxury-wedding",
 		title: "Luxury Destination Wedding",
 		category: "Wedding Production",
 		image: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=800",
@@ -248,10 +252,11 @@ const portfolioHighlights = [
 			<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
 				{
 					portfolioHighlights.map((item, index) => (
-						<div
+						<a
+							href={`/work/${item.id}`}
 							data-aos="fade-up"
 							data-aos-delay={index * 100}
-							class="group relative h-96 rounded-3xl overflow-hidden glass-card border border-slate-800"
+							class="group relative h-96 rounded-3xl overflow-hidden glass-card border border-slate-800 block"
 						>
 							<img
 								src={item.image}
@@ -265,10 +270,10 @@ const portfolioHighlights = [
 									{item.category}
 								</span>
 								<h4 class="text-2xl md:text-3xl font-black text-white group-hover:text-red-400 transition-colors">
-									{item.title}
+									{item.title} &rarr;
 								</h4>
 							</div>
-						</div>
+						</a>
 					))
 				}
 			</div>
@@ -335,8 +340,8 @@ const portfolioHighlights = [
 				data-aos="fade-up"
 				data-aos-delay="100"
 			>
-				PROUDLY SERVING <span class="text-gradient"
-					>GLOBAL LEADERS</span>
+				PROUDLY SERVING <span class="text-gradient">GLOBAL LEADERS</span
+				>
 			</h3>
 
 			<div
@@ -398,7 +403,8 @@ const portfolioHighlights = [
 
 				<h2 class="text-4xl md:text-5xl font-black mb-4">
 					LET'S CREATE SOMETHING <span class="text-gradient"
-						>EXTRAORDINARY</span>
+						>EXTRAORDINARY</span
+					>
 				</h2>
 				<p class="text-slate-400 max-w-xl mx-auto mb-10 text-base">
 					Ready to elevate your next corporate event or celebration?
