@@ -63,5 +63,29 @@ const { title } = Astro.props;
 				AOS.init({ duration: 800, once: true });
 			});
 		</script>
+		<!-- Modal Control Script -->
+		<script>
+			const openBtn = document.getElementById("open-modal-btn");
+			const closeBtn = document.getElementById("close-modal-btn");
+			const modal = document.getElementById("inquiry-modal");
+
+			// Use optional chaining (?.) so it doesn't error if an element is missing
+			openBtn?.addEventListener("click", () => {
+				modal?.classList.remove("hidden");
+				document.body.style.overflow = "hidden";
+			});
+
+			closeBtn?.addEventListener("click", () => {
+				modal?.classList.add("hidden");
+				document.body.style.overflow = "auto";
+			});
+
+			modal?.addEventListener("click", (e) => {
+				if (e.target === modal) {
+					modal.classList.add("hidden");
+					document.body.style.overflow = "auto";
+				}
+			});
+		</script>
 	</body>
 </html>
