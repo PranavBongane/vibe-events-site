@@ -195,3 +195,25 @@
         });
     });
 </script>
+<!-- Mobile Menu Toggle Script -->
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const btn = document.getElementById("mobile-menu-btn");
+        const menu = document.getElementById("mobile-menu");
+        const links = document.querySelectorAll(".mobile-link");
+
+        if (!btn || !menu) return;
+
+        // Toggle mobile menu visibility
+        btn.addEventListener("click", () => {
+            menu.classList.toggle("hidden");
+        });
+
+        // Automatically close menu when a link is clicked
+        links.forEach(link => {
+            link.addEventListener("click", () => {
+                menu.classList.add("hidden");
+            });
+        });
+    });
+</script>
