@@ -1,9 +1,11 @@
+<!-- AOS Animation Initialization Script -->
 <script is:inline src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script is:inline>
     document.addEventListener("DOMContentLoaded", () => {
         AOS.init({ duration: 800, once: true });
     });
 </script>
+
 <!-- Modal Control Script -->
 <script>
     const openBtn = document.getElementById("open-modal-btn");
@@ -28,6 +30,8 @@
         }
     });
 </script>
+
+<!-- Statistics Counter Observer Script -->
 <script>
     document.addEventListener("DOMContentLoaded", () => {
         const counters = document.querySelectorAll(".stat-counter");
@@ -77,6 +81,7 @@
     });
 </script>
 
+<!-- Coverflow Carousel Script -->
 <script>
     document.addEventListener("DOMContentLoaded", () => {
         function initAutoCoverflow(containerId: string) {
@@ -151,7 +156,8 @@
         initAutoCoverflow("wedding-coverflow");
     });
 </script>
-<!-- Filter Script -->
+
+<!-- Gallery Filter Script -->
 <script>
     document.addEventListener("DOMContentLoaded", () => {
         const filterBtns = document.querySelectorAll('.filter-btn');
@@ -195,6 +201,7 @@
         });
     });
 </script>
+
 <!-- Mobile Menu Toggle Script -->
 <script>
     // Toggle Mobile Menu
@@ -222,4 +229,84 @@
             mobileMenu?.classList.add('hidden'); // Close menu if coming from mobile
         });
     });
+</script>
+
+<!-- Floating Contact Menu Script -->
+<script>
+	const widget = document.getElementById("contact-widget")!;
+	const trigger = document.getElementById("contact-trigger")!;
+	const options = document.getElementById("contact-options")!;
+	const chatIcon = document.getElementById("chat-icon")!;
+	const closeIcon = document.getElementById("close-icon")!;
+
+	if (widget && trigger && options && chatIcon && closeIcon) {
+		let isOpen = false;
+
+		function openWidget() {
+			isOpen = true;
+
+			options.classList.remove(
+				"opacity-0",
+				"translate-y-10",
+				"pointer-events-none"
+			);
+
+			options.classList.add(
+				"opacity-100",
+				"translate-y-0",
+				"pointer-events-auto"
+			);
+
+			chatIcon.classList.add("scale-0", "rotate-90");
+			closeIcon.classList.remove("scale-0", "rotate-90");
+
+			trigger.setAttribute("aria-expanded", "true");
+		}
+
+		function closeWidget() {
+			isOpen = false;
+
+			options.classList.add(
+				"opacity-0",
+				"translate-y-10",
+				"pointer-events-none"
+			);
+
+			options.classList.remove(
+				"opacity-100",
+				"translate-y-0",
+				"pointer-events-auto"
+			);
+
+			chatIcon.classList.remove("scale-0", "rotate-90");
+			closeIcon.classList.add("scale-0", "rotate-90");
+
+			trigger.setAttribute("aria-expanded", "false");
+		}
+
+		// Main button
+		trigger.addEventListener("click", (event) => {
+			event.stopPropagation();
+
+			if (isOpen) {
+				closeWidget();
+			} else {
+				openWidget();
+			}
+		});
+
+		// Close when clicking outside
+		document.addEventListener("click", (event) => {
+			const target = event.target;
+
+			if (target instanceof Node && !widget.contains(target)) {
+				closeWidget();
+			}
+		});
+
+		// Prevent clicks inside widget from closing it
+		widget.addEventListener("click", (event) => {
+			event.stopPropagation();
+		});
+	}
 </script>
