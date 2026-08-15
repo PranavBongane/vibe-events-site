@@ -72,19 +72,18 @@
 /* Active center card (bright image, visible text, premium highlight) */
 .cover-card.active {
     opacity: 1;
-    transform: translateX(0) scale(1.1) rotateY(0deg);
+    /* Increased scale from 1.1 to 1.25 to make it noticeably bigger than the rest */
+    transform: translateX(0) scale(1.25) rotateY(0deg);
     z-index: 10;
     
-    /* 1. Deep black shadow for depth 
-       2. Glowing red ambient shadow for the highlight */
+    /* Deep black shadow & glowing red ambient shadow */
     box-shadow: 
-        0 20px 50px rgba(0, 0, 0, 0.9), 
-        0 0 40px rgba(220, 38, 38, 0.4);
+        0 25px 60px rgba(0, 0, 0, 0.95), 
+        0 0 50px rgba(220, 38, 38, 0.5);
         
-    /* Highlights the edge of the glass card with your brand red */
+    /* Highlights the edge of the glass card with brand red */
     border: 1px solid rgba(220, 38, 38, 0.8);
 }
-
 .cover-card.active .card-img {
     opacity: 1;
 }
@@ -95,25 +94,25 @@
 
 /* Side Cards */
 .cover-card.prev-1 {
-    opacity: 0.6;
+    opacity: 0.2;
     transform: translateX(-50%) scale(0.85) rotateY(45deg);
     z-index: 9;
 }
 
 .cover-card.prev-2 {
-    opacity: 0.4;
+    opacity: 0.2;
     transform: translateX(-85%) scale(0.7) rotateY(55deg);
     z-index: 8;
 }
 
 .cover-card.next-1 {
-    opacity: 0.6;
+    opacity: 0.4;
     transform: translateX(50%) scale(0.85) rotateY(-45deg);
     z-index: 9;
 }
 
 .cover-card.next-2 {
-    opacity: 0.4;
+    opacity: 0.1;
     transform: translateX(85%) scale(0.7) rotateY(-55deg);
     z-index: 8;
 }

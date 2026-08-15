@@ -197,23 +197,29 @@
 </script>
 <!-- Mobile Menu Toggle Script -->
 <script>
-    document.addEventListener("DOMContentLoaded", () => {
-        const btn = document.getElementById("mobile-menu-btn");
-        const menu = document.getElementById("mobile-menu");
-        const links = document.querySelectorAll(".mobile-link");
+    // Toggle Mobile Menu
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileLinks = document.querySelectorAll('.mobile-nav-link');
 
-        if (!btn || !menu) return;
+    menuBtn?.addEventListener('click', () => {
+        mobileMenu?.classList.toggle('hidden');
+    });
 
-        // Toggle mobile menu visibility
-        btn.addEventListener("click", () => {
-            menu.classList.toggle("hidden");
+    mobileLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenu?.classList.add('hidden');
         });
+    });
 
-        // Automatically close menu when a link is clicked
-        links.forEach(link => {
-            link.addEventListener("click", () => {
-                menu.classList.add("hidden");
-            });
+    // Handle Modal Opening (for both desktop and mobile buttons)
+    const modal = document.getElementById('inquiry-modal');
+    const openModalBtns = document.querySelectorAll('#open-modal-btn, #mobile-open-modal-btn');
+
+    openModalBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            modal?.classList.remove('hidden');
+            mobileMenu?.classList.add('hidden'); // Close menu if coming from mobile
         });
     });
 </script>
