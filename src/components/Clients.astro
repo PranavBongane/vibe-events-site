@@ -1,0 +1,71 @@
+---
+import { clients } from "../data/projects";
+---
+
+<section id="clients" class="py-24 w-full overflow-hidden bg-slate-950">
+    <div class="max-w-7xl mx-auto px-6 text-center mb-16">
+        <h2
+            class="text-red-500 font-bold uppercase tracking-widest text-sm mb-2"
+            data-aos="fade-up"
+        >
+            Trusted Partnerships
+        </h2>
+        <h3
+            class="text-4xl md:text-5xl font-black"
+            data-aos="fade-up"
+            data-aos-delay="100"
+        >
+            PROUDLY SERVING <span class="text-gradient">GLOBAL LEADERS</span>
+        </h3>
+    </div>
+
+    <!-- Marquee Wrapper -->
+    <div 
+        class="relative max-w-7xl mx-auto border-y border-slate-800/60 py-12 overflow-hidden flex group"
+        data-aos="fade-up" 
+        data-aos-delay="200"
+    >
+        <!-- Gradient Masks for smooth fading -->
+        <div class="absolute inset-y-0 left-0 w-24 md:w-48 bg-gradient-to-r from-slate-950 to-transparent z-10 pointer-events-none"></div>
+        <div class="absolute inset-y-0 right-0 w-24 md:w-48 bg-gradient-to-l from-slate-950 to-transparent z-10 pointer-events-none"></div>
+
+        <!-- Animated Scrolling Track -->
+        <div class="marquee-track flex w-max">
+            
+            <!-- First Set of Logos -->
+            <!-- Changed gap from 24 to 12/16 to bring them closer together -->
+            <div class="flex items-center gap-6 md:gap-6 px-4 md:px-6">
+                {
+                    clients.map((client) => (
+                        <div class="flex items-center justify-center shrink-0 w-40 md:w-56 h-20 md:h-28">
+                            <!-- Removed the restrictive max-h-[70%] and added w-full h-full -->
+                            <img 
+                                src={client.logo} 
+                                alt={`${client.name} logo`} 
+                                class="w-full h-full object-contain" 
+                            />
+                        </div>
+                    ))
+                }
+            </div>
+
+            <!-- Second Set of Logos (Duplicate) -->
+            <div class="flex items-center gap-6 md:gap-6 px-4 md:px-6">
+                {
+                    clients.map((client) => (
+                        <div class="flex items-center justify-center shrink-0 w-40 md:w-56 h-20 md:h-28">
+                            <img 
+                                src={client.logo} 
+                                alt={`${client.name} logo`} 
+                                class="w-full h-full object-contain"
+                                title={client.name}
+                            />
+                        </div>
+                    ))
+                }
+            </div>
+
+        </div>
+    </div>
+</section>
+

@@ -1,0 +1,197 @@
+<script is:inline src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script is:inline>
+    document.addEventListener("DOMContentLoaded", () => {
+        AOS.init({ duration: 800, once: true });
+    });
+</script>
+<!-- Modal Control Script -->
+<script>
+    const openBtn = document.getElementById("open-modal-btn");
+    const closeBtn = document.getElementById("close-modal-btn");
+    const modal = document.getElementById("inquiry-modal");
+
+    // Use optional chaining (?.) so it doesn't error if an element is missing
+    openBtn?.addEventListener("click", () => {
+        modal?.classList.remove("hidden");
+        document.body.style.overflow = "hidden";
+    });
+
+    closeBtn?.addEventListener("click", () => {
+        modal?.classList.add("hidden");
+        document.body.style.overflow = "auto";
+    });
+
+    modal?.addEventListener("click", (e) => {
+        if (e.target === modal) {
+            modal.classList.add("hidden");
+            document.body.style.overflow = "auto";
+        }
+    });
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const counters = document.querySelectorAll(".stat-counter");
+
+        const observerOptions = {
+            threshold: 0.5,
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    // Cast entry.target as HTMLSpanElement to inform TypeScript of the element type
+                    const target = entry.target as HTMLSpanElement;
+                    const targetAttribute = target.getAttribute("data-target");
+
+                    if (!targetAttribute) return;
+
+                    const endValue = parseInt(targetAttribute, 10);
+
+                    let startValue = 0;
+                    const duration = 2000; // 2 seconds
+                    const frameRate = 16;
+                    const totalFrames = Math.round(duration / frameRate);
+                    const increment = endValue / totalFrames;
+
+                    const updateCounter = () => {
+                        startValue += increment;
+
+                        if (startValue < endValue) {
+                            target.textContent =
+                                Math.ceil(startValue).toString();
+                            requestAnimationFrame(updateCounter);
+                        } else {
+                            target.textContent = endValue.toString();
+                        }
+                    };
+
+                    requestAnimationFrame(updateCounter);
+                    observer.unobserve(target);
+                }
+            });
+        }, observerOptions);
+
+        counters.forEach((counter) => {
+            observer.observe(counter);
+        });
+    });
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        function initAutoCoverflow(containerId: string) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+
+            const cards = Array.from(container.querySelectorAll(".cover-card"));
+            if (!cards.length) return;
+
+            let activeIndex = 0;
+            const total = cards.length;
+            const baseClasses =
+                "cover-card absolute w-[300px] h-[200px] md:w-[500px] md:h-[300px] rounded-3xl overflow-hidden cursor-pointer shadow-2xl transition-all duration-500 border border-slate-800";
+
+            function updateCoverflow() {
+                cards.forEach((card, index) => {
+                    (card as HTMLElement).className = baseClasses;
+
+                    let diff = index - activeIndex;
+                    if (diff > Math.floor(total / 2)) diff -= total;
+                    else if (diff < -Math.floor(total / 2)) diff += total;
+
+                    if (diff === 0) card.classList.add("active");
+                    else if (diff === -1) card.classList.add("prev-1");
+                    else if (diff === -2) card.classList.add("prev-2");
+                    else if (diff === 1) card.classList.add("next-1");
+                    else if (diff === 2) card.classList.add("next-2");
+                });
+            }
+
+            // Still allow clicking side cards to bring them to the center
+            cards.forEach((card, index) => {
+                card.addEventListener("click", () => {
+                    activeIndex = index;
+                    updateCoverflow();
+                    resetAutoPlay(); // Reset the timer so it doesn't immediately skip
+                });
+            });
+
+            function goNext() {
+                activeIndex = (activeIndex + 1) % total;
+                updateCoverflow();
+            }
+
+            // Auto-play Logic
+            let autoPlayTimer: ReturnType<typeof setInterval>;
+
+            function startAutoPlay() {
+                autoPlayTimer = setInterval(goNext, 3000); // Rotates every 3 seconds
+            }
+
+            function stopAutoPlay() {
+                clearInterval(autoPlayTimer);
+            }
+
+            function resetAutoPlay() {
+                stopAutoPlay();
+                startAutoPlay();
+            }
+
+            // Pause rotation when the user interacts with it
+            container.addEventListener("mouseenter", stopAutoPlay);
+            container.addEventListener("mouseleave", startAutoPlay);
+            container.addEventListener("touchstart", stopAutoPlay);
+            container.addEventListener("touchend", startAutoPlay);
+
+            updateCoverflow();
+            startAutoPlay();
+        }
+
+        initAutoCoverflow("corporate-coverflow");
+        initAutoCoverflow("wedding-coverflow");
+    });
+</script>
+<!-- Filter Script -->
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+
+        filterBtns.forEach(btn => {
+            // Removed 'e' from the callback, we will just use 'btn' directly
+            btn.addEventListener('click', () => {
+                const targetCategory = btn.getAttribute('data-target');
+
+                filterBtns.forEach(b => {
+                    b.classList.remove('bg-red-600', 'border-red-500', 'text-white', 'shadow-lg', 'shadow-red-600/30');
+                    b.classList.add('bg-slate-900', 'border-slate-700', 'text-slate-400');
+                });
+                
+                btn.classList.remove('bg-slate-900', 'border-slate-700', 'text-slate-400');
+                btn.classList.add('bg-red-600', 'border-red-500', 'text-white', 'shadow-lg', 'shadow-red-600/30');
+
+                galleryItems.forEach(item => {
+                    const itemCategory = item.getAttribute('data-category');
+                    
+                    // This instanceof check magically satisfies TypeScript's strict rules
+                    // while remaining 100% valid vanilla JavaScript.
+                    if (item instanceof HTMLElement) {
+                        if (targetCategory === 'All' || targetCategory === itemCategory) {
+                            item.style.display = 'block';
+                            setTimeout(() => {
+                                item.style.opacity = '1';
+                                item.style.transform = 'scale(1)';
+                            }, 50);
+                        } else {
+                            item.style.opacity = '0';
+                            item.style.transform = 'scale(0.95)';
+                            setTimeout(() => {
+                                item.style.display = 'none';
+                            }, 300); 
+                        }
+                    }
+                });
+            });
+        });
+    });
+</script>

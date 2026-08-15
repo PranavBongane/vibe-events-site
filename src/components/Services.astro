@@ -1,0 +1,44 @@
+---
+import { services } from "../data/projects";
+---
+
+<section id="services" class="py-24 bg-slate-900/30 border-y border-slate-800">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-16">
+            <h2
+                class="text-red-500 font-bold uppercase tracking-widest text-sm mb-2"
+                data-aos="fade-up"
+            >
+                Our Expertise
+            </h2>
+            <h3
+                class="text-4xl md:text-5xl font-black"
+                data-aos="fade-up"
+                data-aos-delay="100"
+            >
+                WHAT <span class="text-gradient">WE DO</span>
+            </h3>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {
+                services.map((srv, index) => (
+                    <div
+                        data-aos="fade-up"
+                        data-aos-delay={index * 100}
+                        class="glass-card p-8 rounded-3xl border border-slate-800 hover:border-red-500/50 transition-all duration-300 group"
+                    >
+                        <div class="w-14 h-14 rounded-2xl bg-linear-to-br from-red-600 to-amber-500 flex items-center justify-center text-white font-black text-xl mb-6 shadow-lg shadow-red-600/20 group-hover:scale-110 transition-transform">
+                            0{index + 1}
+                        </div>
+                        <h4 class="text-2xl font-bold mb-3 text-white">
+                            {srv.title}
+                        </h4>
+                        <p class="text-slate-400 text-sm leading-relaxed">
+                            {srv.desc}
+                        </p>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</section>

@@ -4,10 +4,14 @@
 @layer base {
     html {
         scroll-behavior: smooth;
+        overflow-x: hidden; /* Forces mobile browsers to hide off-screen elements */
+        width: 100%;
     }
 
     body {
         @apply bg-slate-950 text-slate-100 antialiased overflow-x-hidden;
+        width: 100%;
+        position: relative;
     }
 }
 
@@ -20,3 +24,136 @@
         @apply bg-slate-900/60 backdrop-blur-xl border border-slate-800;
     }
 }
+
+
+/* Continuous flowing gradient animation */
+.animate-gradient-text {
+    background-size: 200% auto;
+    animation: gradientFlow 4s linear infinite;
+}
+
+@keyframes gradientFlow {
+    0% {
+        background-position: 0% center;
+    }
+
+    100% {
+        background-position: -200% center;
+    }
+}
+
+.coverflow-container {
+    perspective: 1200px;
+}
+
+.coverflow {
+    transform-style: preserve-3d;
+}
+
+.cover-card {
+    transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.5s ease;
+}
+
+/* Default state for all cards (dimmed image, hidden text) */
+.cover-card {
+    opacity: 0;
+    transform: translateX(0) scale(0.5) rotateY(0deg);
+    z-index: 0;
+}
+
+.cover-card .card-img {
+    opacity: 0.4;
+}
+
+.cover-card .text-content {
+    opacity: 0;
+}
+
+/* Active center card (bright image, visible text, premium highlight) */
+.cover-card.active {
+    opacity: 1;
+    transform: translateX(0) scale(1.1) rotateY(0deg);
+    z-index: 10;
+    
+    /* 1. Deep black shadow for depth 
+       2. Glowing red ambient shadow for the highlight */
+    box-shadow: 
+        0 20px 50px rgba(0, 0, 0, 0.9), 
+        0 0 40px rgba(220, 38, 38, 0.4);
+        
+    /* Highlights the edge of the glass card with your brand red */
+    border: 1px solid rgba(220, 38, 38, 0.8);
+}
+
+.cover-card.active .card-img {
+    opacity: 1;
+}
+
+.cover-card.active .text-content {
+    opacity: 1;
+}
+
+/* Side Cards */
+.cover-card.prev-1 {
+    opacity: 0.6;
+    transform: translateX(-50%) scale(0.85) rotateY(45deg);
+    z-index: 9;
+}
+
+.cover-card.prev-2 {
+    opacity: 0.4;
+    transform: translateX(-85%) scale(0.7) rotateY(55deg);
+    z-index: 8;
+}
+
+.cover-card.next-1 {
+    opacity: 0.6;
+    transform: translateX(50%) scale(0.85) rotateY(-45deg);
+    z-index: 9;
+}
+
+.cover-card.next-2 {
+    opacity: 0.4;
+    transform: translateX(85%) scale(0.7) rotateY(-55deg);
+    z-index: 8;
+}
+
+/* Mobile scaling */
+@media (max-width: 768px) {
+    .cover-card.active {
+        transform: translateX(0) scale(1.05) rotateY(0deg);
+    }
+
+    .cover-card.prev-1 {
+        transform: translateX(-40%) scale(0.85) rotateY(45deg);
+    }
+
+    .cover-card.next-1 {
+        transform: translateX(40%) scale(0.85) rotateY(-45deg);
+    }
+
+    .cover-card.prev-2 {
+        transform: translateX(-70%) scale(0.7) rotateY(55deg);
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    .cover-card.next-2 {
+        transform: translateX(70%) scale(0.7) rotateY(-55deg);
+        opacity: 0;
+        pointer-events: none;
+    }
+}
+ /* Continuous linear scrolling animation */
+   .marquee-track {
+        animation: scroll-marquee 30s linear infinite;
+    }
+
+    .marquee-track:hover {
+        animation-play-state: paused;
+    }
+
+    @keyframes scroll-marquee {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+    }
